@@ -11,17 +11,26 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="header-title">KezakoPlant</h1>
-    </header>
-    <main>
+    <div class="container">
+        <header class="text-center">
+            <nav class="navbar navbar-light bg-success">
+                <div class="container-fluid d-flex justify-content-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="./assets/images/leaf.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        <span class="text-white">KezakoPlant</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <form action="upload.php" method="post" enctype="multipart/form-data" class="mt-3 text-center">
+                <label for="formFile" class="form-label">Select image to upload:</label>
+                <input class="form-control mb-3" type="file" id="fileToUpload" name="fileToUpload">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </main>
+    </div>
 
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" name="submit">
-        </form>
-    </main>
 </body>
 
 </html>
