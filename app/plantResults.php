@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Display scientific name, family name and common names of a plant
+ *
+ * @param [object] $plantResultObject
+ * 
+ */
 function displayPlantResults($plantResultObject) {
     foreach ($plantResultObject->{'results'} as $result): ?>
         <h2>Nom scientifique</h2>
@@ -12,6 +17,5 @@ function displayPlantResults($plantResultObject) {
         <?php foreach ($result->species->commonNames as $plantCommonName): ?>
             <?= $plantCommonName ?>
         <?php endforeach;
-      
    endforeach;
 }
