@@ -1,5 +1,7 @@
-
 <?php
+
+require_once(__DIR__ . '/plantResults.php');
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -141,10 +143,13 @@ if ($uploadOk == 0) {
 
         curl_close($ch); // close the cURL session
 
-        /* Display Results */
+        /* Convert the JSON result to an object */
         $plantResultObject = json_decode($response);
 
-        foreach ($plantResultObject->{'results'} as $result): ?>
+        /* Display the results */
+        displayPlantResults($plantResultObject);
+
+       /*  foreach ($plantResultObject->{'results'} as $result): ?>
             <h2>Nom scientifique</h2>
             <?= $result->species->scientificNameWithoutAuthor ?>
 
@@ -156,7 +161,7 @@ if ($uploadOk == 0) {
                 <?= $plantCommonName ?>
             <?php endforeach;
           
-       endforeach;
+       endforeach; */
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
