@@ -11,6 +11,8 @@
 </head>
 
 <?php
+/* HEADER / NAV */
+include('./parts/_nav.html');
 
 /**
  * Display scientific name, family name and common names of a plant
@@ -18,13 +20,29 @@
  * @param [object] $plantResultObject
  * 
  */
-function displayPlantResults($plantResultObject)
+function displayPlantResults($plantResultObject, $targetFile)
 {
-    foreach ($plantResultObject->{'results'} as $result) : ?>
-        <section class="bg-success bg-gradient mb-3 text-white">
+    /* Display image uploaded by the user */
+    $filePath = '/' . $targetFile;
+?>
+    <div class="text-center">
+        <img src="<?= $filePath ?>" class="w-25 mt-3" />
+    </div>
 
-            <h2><?= $result->species->scientificNameWithoutAuthor ?><span class="badge bg-secondary" alt="test">Score : <?= round($result->score, 2) ?> %</span></h2>
-           
+    <h2 class="text-center mt-3">Résultats :</h2>
+
+    <?php
+
+    /* Display Results */
+    foreach ($plantResultObject->{'results'} as $result) : ?>
+        <section class="bg-success bg-gradient mb-3 mt-3 p-3 text-white">
+
+            <h2><?= $result->species->scientificNameWithoutAuthor ?>
+                <span class="badge bg-success" alt="test">
+                    Score : <?= round($result->score, 2) * 100 ?> %
+                </span>
+            </h2>
+
             <h3>Famille</h3>
             <?= $result->species->family->scientificNameWithoutAuthor ?>
 
@@ -36,7 +54,9 @@ function displayPlantResults($plantResultObject)
             </ul>
         </section>
 
-<?php endforeach; ?>
- <a href="index.php">Retour à la page d'accueil</a>
- <?php
+    <?php endforeach; ?>
+    <p class="text-center">
+        <a href="index.php">Retour à la page d'accueil</a>
+    </p>
+<?php
 }

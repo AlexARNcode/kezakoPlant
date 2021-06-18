@@ -52,7 +52,7 @@ if ($uploadOk == 0) {
         $plantResultObject = getPlantInfoFromImage($target_file);
 
         /* Display the results */
-        displayPlantResults($plantResultObject);
+        displayPlantResults($plantResultObject, $target_file);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

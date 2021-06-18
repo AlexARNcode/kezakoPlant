@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -10,35 +10,26 @@
 </head>
 
 <body>
-    <div class="container-fluid p-0">
-        <header class="text-center">
-            <nav class="navbar navbar-light bg-success">
-                <div class="container-fluid d-flex justify-content-center">
-                    <a class="navbar-brand" href="#">
-                        <img src="./assets/images/leaf.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        <span class="text-white">KezakoPlant</span>
-                    </a>
-                </div>
-            </nav>
-        </header>
-        <div style="background: url(/assets/images/jasmine-brown.jpg)" class="page-holder bg-cover no-repeat">
+    <!-- NAV / HEADER -->
+    <?php include('./parts/_nav.html') ?>
 
-            <div class="container py-5">
-                <header class="text-center text-white py-5">
-                    <h1 class="display-4 font-weight-bold mb-4">Envoyez votre image</h1>
-                    <p class="lead mb-0">Et KeazkoPlant se charge du reste.</p>
-                    </p>
-                </header>
+    <!-- MAIN CONTENT -->
+    <div style="background: url(/assets/images/jasmine-brown.jpg)" class="page-holder bg-cover no-repeat">
+        <div class="container py-5">
+            <header class="text-center text-white py-5">
+                <h1 class="display-4 font-weight-bold mb-4">Envoyez votre image</h1>
+                <p class="lead mb-0">Et KeazkoPlant se charge du reste.</p>
+                </p>
+            </header>
 
-                <main>
-                    <form action="upload.php" method="post" enctype="multipart/form-data" class="mt-3 text-center">
-                        <!-- <label for="formFile" class="form-label text-white">Select image to upload:</label> -->
-                        <input class="form-control mb-3" type="file" id="fileToUpload" name="fileToUpload">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </main>
-            </div>
-
+            <main>
+                <form action="upload.php" method="post" enctype="multipart/form-data" class="mt-3 text-center">
+                    <input class="form-control mb-3 w-75 mx-auto" type="file" id="fileToUpload" name="fileToUpload">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </main>
+        </div>
+    </div>
 </body>
 
 </html>
