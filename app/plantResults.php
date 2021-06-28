@@ -35,24 +35,26 @@ function displayPlantResults($plantResultObject, $targetFile)
 
     /* Display Results */
     foreach ($plantResultObject->{'results'} as $result) : ?>
-        <section class="bg-success bg-gradient mb-3 mt-3 p-3 text-white">
+        <div class="row">
+            <section class="bg-success bg-gradient mb-3 mt-3 p-3 text-white col-sm-12 col-lg-6 mx-auto">
 
-            <h2><?= $result->species->scientificNameWithoutAuthor ?>
-                <span class="badge bg-success" alt="test">
-                    Score : <?= round($result->score, 2) * 100 ?> %
-                </span>
-            </h2>
+                <h2><?= $result->species->scientificNameWithoutAuthor ?>
+                    <span class="badge bg-success" alt="test">
+                        Score : <?= round($result->score, 2) * 100 ?> %
+                    </span>
+                </h2>
 
-            <h3>Famille</h3>
-            <?= $result->species->family->scientificNameWithoutAuthor ?>
+                <h3>Famille</h3>
+                <?= $result->species->family->scientificNameWithoutAuthor ?>
 
-            <h3>Noms courants</h3>
-            <ul>
-                <?php foreach ($result->species->commonNames as $plantCommonName) : ?>
-                    <li><?= $plantCommonName ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </section>
+                <h3>Noms courants</h3>
+                <ul>
+                    <?php foreach ($result->species->commonNames as $plantCommonName) : ?>
+                        <li><?= $plantCommonName ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </section>
+        </div>
 
     <?php endforeach; ?>
     <p class="text-center">
