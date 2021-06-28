@@ -1,38 +1,49 @@
 <?php
 
+/**
+ * DEPENDENCIES
+ */
 require_once(__DIR__ . '/plantResults.php');
 require_once(__DIR__ . '/plantNetApi.php');
 
-/* UPLOAD */
+/**
+ * UPLOAD
+ */
+$uploadIsOk = 1;
+
+// Directory where files will be uploaded
 $targertDir = "uploads/";
 
-// Example : 60d978b1edbeb-paquerette-fleur.jpg
+// Change the original filename to a random name, example : 60d978b1edbeb-paquerette-fleur.jpg
 $newFileName = uniqid() . '-' . basename($_FILES["fileToUpload"]["name"]);
+
+// Define the complete name with path/filename.extension, example : uploads/60d978b1edbeb-paquerette-fleur.jpg
 $targetFile = $targertDir . $newFileName;
-$uploadOk = 1;
+
+
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
+        $uploadIsOk = 1;
     } else {
         echo "File is not an image.";
-        $uploadOk = 0;
+        $uploadIsOk = 0;
     }
 }
 
 // Check if file already exists
 if (file_exists($targetFile)) {
     echo "Sorry, file already exists.";
-    $uploadOk = 0;
+    $uploadIsOk = 0;
 }
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
-    $uploadOk = 0;
+    $uploadIsOk = 0;
 }
 
 // Allow certain file formats
@@ -41,11 +52,11 @@ if (
     && $imageFileType != "gif"
 ) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
+    $uploadIsOk = 0;
 }
 
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
+// Check if $uploadIsOk is set to 0 by an error
+if ($uploadIsOk == 0) {
     echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
 } else {
