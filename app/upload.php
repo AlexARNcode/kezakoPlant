@@ -9,7 +9,7 @@ require_once(__DIR__ . '/plantNetApi.php');
 /**
  * UPLOAD
  */
-$uploadIsOk = 1;
+$uploadIsOk = true;
 
 // Directory where files will be uploaded
 $targertDir = "uploads/";
@@ -27,23 +27,23 @@ if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
-        $uploadIsOk = 1;
+        $uploadIsOk = true;
     } else {
         echo "File is not an image.";
-        $uploadIsOk = 0;
+        $uploadIsOk = false;
     }
 }
 
 // Check if file already exists
 if (file_exists($targetFile)) {
     echo "Sorry, file already exists.";
-    $uploadIsOk = 0;
+    $uploadIsOk = false;
 }
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
-    $uploadIsOk = 0;
+    $uploadIsOk = false;
 }
 
 // Allow certain file formats
@@ -52,11 +52,11 @@ if (
     && $imageFileType != "gif"
 ) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadIsOk = 0;
+    $uploadIsOk = false;
 }
 
 // Check if $uploadIsOk is set to 0 by an error
-if ($uploadIsOk == 0) {
+if ($uploadIsOk === false) {
     echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
 } else {

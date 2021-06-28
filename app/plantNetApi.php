@@ -3,10 +3,10 @@
 /**
  * Get information of a plant from an image file, using PlantNet API. Returns an object.
  *
- * @param [string] $target_file
+ * @param [string] $targetFile
  * @return object
  */ 
-function getPlantInfoFromImage($target_file)
+function getPlantInfoFromImage($targetFile)
 {
     // make PHP / CURL compliant with multidimensional arrays
     function curl_setopt_custom_postfields($ch, $postfields, $headers = null)
@@ -88,7 +88,7 @@ function getPlantInfoFromImage($target_file)
             'flower',
         ),
         'images' => array(
-            '@' . $target_file,
+            '@' . $targetFile,
         )
     );
 
