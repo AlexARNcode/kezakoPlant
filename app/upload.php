@@ -20,11 +20,13 @@ $newFileName = uniqid() . '-' . basename($_FILES["fileToUpload"]["name"]);
 // Define the complete name with path/filename.extension, example : uploads/60d978b1edbeb-paquerette-fleur.jpg
 $targetFile = $targertDir . $newFileName;
 
-
+// Get the file extension
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadIsOk = true;
